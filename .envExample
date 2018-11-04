@@ -1,0 +1,10 @@
+
+MONGO_HOST=localhost
+MONGO_USER=admin(optional)
+MONGO_PASS=admin(optional)
+MONGO_PORT=27017
+MONGO_DATABASE=minecraft
+
+
+JWT_PASS=(JWT Password to cipher data, required)
+DIRECTORY_PLUGINS=(Directory to minecraft server)
