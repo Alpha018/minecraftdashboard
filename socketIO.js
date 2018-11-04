@@ -211,5 +211,5 @@ function startScocket() {
 }
 
 module.exports = {
-    startSocket
+    startScocket
 };
