@@ -7,4 +7,6 @@ MONGO_DATABASE=minecraft
 
 
 JWT_PASS=(JWT Password to cipher data, required)
-DIRECTORY_PLUGINS=(Directory to minecraft server)
+DIRECTORY_PLUGINS=(Route to minecraft plugins e.g. C:/user/.../minecraft/plugins)
+MINECRAFT_SERVER=(Name of file to launch the minecraft server e.g. "spigot.jar")
+MINECRAFT_DIRECTORY=(Route to minecraft server e.g. C:/user/.../minecraft)

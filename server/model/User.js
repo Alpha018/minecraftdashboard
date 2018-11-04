@@ -11,7 +11,7 @@ const userSchema = new Schema({
         required: true,
         select: false,
     },
-    // Solo persona
+
     email: {
         type: String,
         trim: true,
@@ -20,7 +20,7 @@ const userSchema = new Schema({
             return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
         },'El email utilizado no es valido.']
     },
-    //Nombre Completo
+
     username: {
         type: String,
         required:true,
