@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pk2-angular": {
+    "pd-pro-angularcli": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -21,15 +21,41 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/sass/paper-kit.scss",
-              "src/assets/css/demo.css",
-              "src/assets/css/nucleo-icons.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss",
+              "src/assets/scss/paper-dashboard.scss",
+              "src/assets/css/demo.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.slim.min.js",
+              "node_modules/jquery/dist/jquery.js",
               "node_modules/popper.js/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/moment/moment.js",
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/chartist/dist/chartist.js",
+              "node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/easy-pie-chart/dist/jquery.easypiechart.js",
+              "node_modules/fullcalendar/dist/fullcalendar.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/jvectormap/jquery-jvectormap.min.js",
+              "node_modules/jvectormap/lib/jquery-mousewheel.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-map.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js",
+              "node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js",
+              "node_modules/nouislider/distribute/nouislider.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
+              "node_modules/datatables.net-colreorder-bs4/js/colReorder.bootstrap4.js",
+              "node_modules/datatables.net-fixedcolumns-bs4/js/fixedColumns.bootstrap4.js",
+              "node_modules/datatables.net-fixedheader-bs4/js/fixedHeader.bootstrap4.js",
+              "node_modules/datatables.net-scroller-bs4/js/scroller.bootstrap4.js",
+              "node_modules/datatables.net-select-bs4/js/select.bootstrap4.js",
+              "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
+              "node_modules/@adactive/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
+              "node_modules/jasny-bootstrap/dist/js/jasny-bootstrap.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.js",
+              "src/assets/js/jquery.validate.min.js"
             ]
           },
           "configurations": {
@@ -55,18 +81,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pk2-angular:build"
+            "browserTarget": "pd-pro-angularcli:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pk2-angular:build:production"
+              "browserTarget": "pd-pro-angularcli:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pk2-angular:build"
+            "browserTarget": "pd-pro-angularcli:build"
           }
         },
         "test": {
@@ -77,15 +103,41 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
-              "node_modules/jquery/dist/jquery.slim.min.js",
+              "node_modules/jquery/dist/jquery.js",
               "node_modules/popper.js/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/moment/moment.js",
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/chartist/dist/chartist.js",
+              "node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/easy-pie-chart/dist/jquery.easypiechart.js",
+              "node_modules/fullcalendar/dist/fullcalendar.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/jvectormap/jquery-jvectormap.min.js",
+              "node_modules/jvectormap/lib/jquery-mousewheel.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-map.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js",
+              "node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js",
+              "node_modules/nouislider/distribute/nouislider.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
+              "node_modules/datatables.net-colreorder-bs4/js/colReorder.bootstrap4.js",
+              "node_modules/datatables.net-fixedcolumns-bs4/js/fixedColumns.bootstrap4.js",
+              "node_modules/datatables.net-fixedheader-bs4/js/fixedHeader.bootstrap4.js",
+              "node_modules/datatables.net-scroller-bs4/js/scroller.bootstrap4.js",
+              "node_modules/datatables.net-select-bs4/js/select.bootstrap4.js",
+              "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
+              "node_modules/@adactive/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
+              "node_modules/jasny-bootstrap/dist/js/jasny-bootstrap.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.js",
+              "src/assets/js/jquery.validate.min.js"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/sass/paper-kit.scss",
-              "src/assets/css/demo.css",
-              "src/assets/css/nucleo-icons.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss",
+              "src/assets/scss/paper-dashboard.scss",
+              "src/assets/css/demo.css"
             ],
             "assets": [
               "src/assets",
@@ -105,16 +157,16 @@
         }
       }
     },
-    "pk2-angular-e2e": {
+    "pd-pro-angularcli-e2e": {
       "root": "",
-      "sourceRoot": "e2e",
+      "sourceRoot": "",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "pk2-angular:serve"
+            "devServerTarget": "pd-pro-angularcli:serve"
           }
         },
         "lint": {
@@ -129,11 +181,11 @@
       }
     }
   },
-  "defaultProject": "pk2-angular",
+  "defaultProject": "pd-pro-angularcli",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "styleext": "css"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

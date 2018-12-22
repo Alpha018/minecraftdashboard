@@ -10,22 +10,23 @@ const logger = log4js.getLogger('Minecraft Dashboard');
 const port = process.env.APP_PORT || 8000;
 const mongoose = require('mongoose');
 
-const socket = require('./socketIO');
-
 logger.level = 'debug';
 
+logger.info('Welcome to BackEnd Minecraft Dashboard');
 logger.info('Init Mongo DB connection');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://${process.env.MONGO_USER}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`, {useMongoClient: true})
+mongoose.set('useCreateIndex', true);
+mongoose.connect(`mongodb://${process.env.MONGO_USER}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`, {useNewUrlParser: true})
     .then(() => {
         logger.info('Connection successful');
-
-        // Start socketIO
-        socket.startScocket();
 
         app.listen(port, () => {
             logger.info(`Server start in port: ${port}`);
         })
     })
-    .catch(err => logger.fatal('Connection to MongoDB error'));
+    .catch(err => {
+            console.log(err);
+            logger.fatal('Connection to MongoDB error')
+        }
+    );

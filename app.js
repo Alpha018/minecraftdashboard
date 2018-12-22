@@ -9,7 +9,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
+const server = require('http').createServer(app);
+const socket = require('./socketIO');
+
 app.use(cors());
+
+// Start socketIO
+socket.startScocket(server);
 
 app.use((req, res, next) =>{
     res.header('Access-Control-Allow-Origin','*');
@@ -40,4 +46,4 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-module.exports = app;
+module.exports = server;

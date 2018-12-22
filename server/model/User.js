@@ -25,7 +25,23 @@ const userSchema = new Schema({
         type: String,
         required:true,
         unique: true
+    },
+
+    profileImg: {
+        fullImage: {
+            type: String
+        },
+        thumbnail: {
+            type: String
+        },
+        nameFileOriginal: {
+            type: String
+        },
+        nameFileSys: {
+            type: String
+        }
     }
+
 });
 
 module.exports = mongoose.model('usuario', userSchema);

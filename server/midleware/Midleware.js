@@ -9,11 +9,11 @@ const User = require('../model/User');
 const secretPassword = process.env.JWT_PASS || 'default';
 
 function ensureAuth(req, res, next) {
-    if (!req.headers.Authorization) {
+    if (!req.headers.authorization) {
         return res.status(401).send({message: 'La peticion no tiene cabecera de autenticacion'})
     }
 
-    const token = req.headers.Authorization.replace(/['"]+/g, '');
+    const token = req.headers.authorization.replace(/['"]+/g, '');
     let payload;
 
     try {
@@ -37,7 +37,7 @@ function ensureAuth(req, res, next) {
             if (!find_user) {
                 res.status(404).send({message: 'El token de acceso no es valido.'})
             } else {
-                req.usuario = payload;
+                req.user = payload;
                 next();
             }
         }
