@@ -1,6 +1,7 @@
 /**
  * Created by Tomás on 20-12-2018.
  */
+//TODO: make socket io autenticate
 'use strict';
 
 const proc = require('child_process');
@@ -25,8 +26,6 @@ function startScocket(app) {
             immediate: false
         }).pipe(process.stdout);
 
-        logger.info('SocketIO Connect');
-
         // --------------------------STATUS SERVER------------------------------
         socket.on('get_status', function (data) {
             socket.emit('status', server);
@@ -36,7 +35,6 @@ function startScocket(app) {
         socket.on('disconnect', function (data) {
             osm.stop();
             socket.disconnect();
-            logger.info('SocketIO disconnect');
         });
 
         // --------------------------INIT SERVER---------------------------------
@@ -144,9 +142,6 @@ function startScocket(app) {
     });
 
     io.on('error', function (err) {
-
-        console.log(err);
-
     });
 }
 

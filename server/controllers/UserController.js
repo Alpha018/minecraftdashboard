@@ -114,17 +114,62 @@ function changePassword(req, res) {
 }
 
 function getFiles(req, res) {
-    const archivos = [];
+    const files = [];
 
     fs.readdirSync(process.env.DIRECTORY_PLUGINS).forEach(file => {
-        if (getFileExtension(file) === 'JAR' || getFileExtension(file) === 'jar') {
-            archivos.push(file);
+        const extension = utils.getFileExtension(file);
+        if (extension === 'JAR' || extension === 'jar' || extension === 'disable') {
+            const data = {file};
+            data.disable = extension === 'disable';
+            files.push(data);
         }
     });
 
     res.status(200).send({
-        plugins: archivos
+        plugins: files
     });
+}
+
+function changeStatusPlugin(req, res) {
+    const fileName = req.body.name;
+
+    const extension = utils.getFileExtension(fileName);
+    if (extension === 'disable') {
+        fs.rename(`${process.env.DIRECTORY_PLUGINS}/${fileName}`, `${process.env.DIRECTORY_PLUGINS}/${utils.removeExtension(fileName)}`, function(err) {
+            if ( err ) {
+                res.status(500).send({
+                    desc: 'Error al modificar el nombre',
+                    disable: true
+                })
+            } else {
+                res.status(200).send({
+                    oldName:`${fileName}`,
+                    name: `${utils.removeExtension(fileName)}`,
+                    disable: false
+                })
+            }
+        });
+    } else if (extension === 'jar' || extension === 'JAR') {
+        fs.rename(`${process.env.DIRECTORY_PLUGINS}/${fileName}`, `${process.env.DIRECTORY_PLUGINS}/${fileName}.disable`, function(err) {
+            if ( err ) {
+                res.status(500).send({
+                    desc: 'Error al modificar el nombre',
+                    disable: false
+                })
+            } else {
+                res.status(200).send({
+                    oldName:`${fileName}`,
+                    name: `${fileName}.disable`,
+                    disable: true
+                })
+            }
+        });
+    } else {
+        res.status(500).send({
+            desc: 'Plugin no corresponde al formato'
+        })
+    }
+
 }
 
 function uploadImageProfile(req, res) {
@@ -230,7 +275,7 @@ function uploadImageProfile(req, res) {
     });
 }
 
-function uploadPlugin(req, res) {
+function uploadPlugins(req, res) {
     const form = new formidable.IncomingForm();
     form.uploadDir = process.env.DIRECTORY_PLUGINS;
     form.keepExtensions = true;
@@ -264,10 +309,9 @@ function uploadPlugin(req, res) {
 
     form.parse(req, function (err, fields, files) {
         if (!err) {
-            const name = 'upload' + files.file.path.split('upload')[1];
-            if (utils.getFileExtension(files.file.name) !== 'jar' && utils.getFileExtension(files.file.name) !== 'JAR') {
+            if (utils.getFileExtension(files.plugins.name) !== 'jar' && utils.getFileExtension(files.plugins.name) !== 'JAR') {
                 try {
-                    fs.unlinkSync(files.file.path);
+                    fs.unlinkSync(files.plugins.path);
                 } catch (err) {
                     logger.error('Archivo no existe');
                 }
@@ -328,8 +372,9 @@ module.exports = {
     saveUser,
     changePassword,
     getFiles,
-    uploadPlugin,
+    uploadPlugins,
     uploadImageProfile,
     getImage,
-    getThumbnail
+    getThumbnail,
+    changeStatusPlugin
 };

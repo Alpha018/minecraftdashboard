@@ -48,7 +48,12 @@ function getFileExtension(filename) {
     return ext == null ? '' : ext[1];
 }
 
+function removeExtension(filename) {
+    return filename.split('.').slice(0, -1).join('.');
+}
+
 module.exports = {
     validateUser,
-    getFileExtension
+    getFileExtension,
+    removeExtension
 };

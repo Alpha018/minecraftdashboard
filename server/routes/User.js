@@ -12,10 +12,11 @@ const api = express.Router();
 api.post('/login', UserController.login);
 api.get('/image/:img', UserController.getImage);
 api.get('/image/thumbnail/:img', UserController.getThumbnail);
-api.post('/uploadPlugin', mdAuth.ensureAuth, UserController.uploadPlugin);
 api.put('/', mdAuth.ensureAuth, UserController.saveUser);
+api.post('/changePassword', mdAuth.ensureAuth, UserController.changePassword);
+api.post('/changeProfileImage', mdAuth.ensureAuth, UserController.uploadImageProfile);
+api.post('/uploadplugins', mdAuth.ensureAuth, UserController.uploadPlugins);
 api.get('/getPlugins', mdAuth.ensureAuth, UserController.getFiles);
-api.post('/changePassword', mdAuth.ensureAuth,UserController.changePassword);
-api.post('/changeProfileImage', mdAuth.ensureAuth,UserController.uploadImageProfile);
+api.post('/changestatusplugin', mdAuth.ensureAuth, UserController.changeStatusPlugin);
 
 module.exports = api;
