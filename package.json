@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "start-back": "nodemon server.js",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -70,6 +71,7 @@
     "mime-types": "^2.1.21",
     "mongoose": "^5.3.9",
     "ngx-chips": "^1.9.2",
+    "ngx-file-drop": "^5.0.0",
     "nodemon": "^1.18.9",
     "nouislider": "9.2.0",
     "os-monitor": "^1.0.6",

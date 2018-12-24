@@ -1,0 +1,33 @@
+<div class="main-content">
+	<div class="row">
+		<div class="col-md-8 ml-auto mr-auto">
+			<div class="card ">
+				<div class="center">
+					<file-drop headertext=", Deben estar en formato JAR" (onFileDrop)="dropped($event)"
+							   (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+						<span>Arrastra tus plugins aquí</span>
+					</file-drop>
+					<div class="upload-table">
+						<p class="text-center" style="padding-top: 10px"><strong>Plugins por subir</strong></p>
+						<table class="table">
+							<tbody class="upload-name-style">
+							<tr *ngIf="filesData.length > 0">
+								<td><strong>Plugin</strong></td>
+								<td><strong>Tamaño</strong></td>
+							</tr>
+							<tr *ngFor="let item of filesData; let i=index">
+								<td><strong>{{ item.file.name }}</strong></td>
+								<td><strong>{{ item.size }}</strong></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="center-block text-center" *ngIf="filesData.length > 0">
+						<button class="btn btn-outline-success btn-round" (click)="submitPlugins()">Subir Plugins</button>
+						<button class="btn btn-outline-warning btn-round" (click)="clearList()">Limpiar Lista</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

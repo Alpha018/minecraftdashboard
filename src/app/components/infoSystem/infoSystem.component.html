@@ -1,0 +1,237 @@
+<div class="main-content">
+
+	<div class="row">
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-settings-gear-65 text-warning"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">CPU</p>
+								<p class="card-title" style="font-size: medium">{{infoCPU?.cpus[0].model}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-chart-bar-32 text-info"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">CPU - Threads</p>
+								<p class="card-title">{{infoCPU?.cpus.length}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-button-power text-gray"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">Status del servidor</p>
+								<p class="card-title" *ngIf="status === 'Online'"
+								   style="color: lawngreen; font-size: medium">{{status}}
+								<p class="card-title" *ngIf="status === 'Offline'"
+								   style="color: orangered; font-size: medium">{{status}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-box-2 text-dark"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">Sistema Operativo</p>
+								<p class="card-title" style="font-size: medium">{{infoCPU?.type}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row offset-lg-3">
+		<div class="col-lg-4 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-laptop text-success"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">RAM</p>
+								<p class="card-title" style="font-size: medium">{{ramTotal}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-watch-time text-danger"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">Tiempo de actividad</p>
+								<p class="card-title" style="font-size: medium">{{uptime}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-4 ml-auto mr-auto offset-2">
+			<div class="card ">
+				<div class="card-header ">
+					<h5 class="card-title">Uso de RAM</h5>
+					<p class="card-category">Uso de memoria en porcentaje</p>
+				</div>
+				<div class="card-body ">
+					<canvas id="chartDonut1" class="ct-chart ct-perfect-fourth" width="456" height="300"></canvas>
+				</div>
+				<div class="card-footer ">
+					<div class="legend">
+						<i class="fa fa-circle text-info"></i> Usado
+					</div>
+					<hr>
+					<div class="stats">
+						<i class="fa fa-bar-chart"></i> Cantidad de RAM usada por el sistema
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6 ml-auto mr-auto">
+			<div class="card card-chart">
+				<div class="card-header">
+					<h5 class="card-title">CPU</h5>
+					<p class="card-category">Uso promedio de CPU</p>
+				</div>
+				<div class="card-body">
+					<canvas id="chartStock"></canvas>
+				</div>
+				<div class="card-footer ">
+					<div class="stats">
+						<i class="fa fa-bar-chart"></i> Cantidad porcentual de uso de CPU
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row offset-lg-4 offset-md-1 offset-2">
+		<div style="padding-right: 3em">
+			<button class="btn btn-success" (click)="clickInit()" style="width: 190px">
+            <span class="btn-label">
+              <i class="nc-icon nc-check-2"></i>
+            </span>
+				Iniciar Servidor
+			</button>
+		</div>
+
+		<div style="padding-right: 3em">
+			<button class="btn btn-warning" (click)="clickReboot()" style="width: 190px">
+				<i class="nc-icon nc-alert-circle-i"></i> Reiniciar Servidor
+			</button>
+		</div>
+
+		<div style="width: 300px">
+			<button class="btn btn-danger" (click)="clickClose()" style="width: 190px">
+				<i class="nc-icon nc-simple-remove"></i> Apagar Servidor
+			</button>
+		</div>
+	</div>
+</div>

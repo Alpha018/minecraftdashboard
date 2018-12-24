@@ -1,0 +1,36 @@
+<div class="main-content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title"> Simple Table</h4>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead class="text-primary">
+							<th class="text-center">#</th>
+							<th>Plugin</th>
+							<th>Estado</th>
+							<th class="text-right">Actions</th>
+							</thead>
+							<tbody>
+							<tr *ngFor="let plugin of plugins; let i=index">
+								<td class="text-center">{{i + 1}}</td>
+								<td>{{plugin?.file}}</td>
+								<td *ngIf="plugin?.disable" style="color: red">Desactivado</td>
+								<td *ngIf="!plugin?.disable" style="color: greenyellow">Activado</td>
+								<td class="text-right">
+									<button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm" (click)="changePluginStatus(plugin?.file)">
+										<i class="fa fa-check"></i>
+									</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

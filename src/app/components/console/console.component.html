@@ -1,0 +1,34 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-10 col-md-10 text-center offset-1">
+				<div class="card  card-tasks">
+					<div class="card-header ">
+						<h4 class="card-title">Consola</h4>
+						<h5 class="card-category">Consola general del servidor</h5>
+					</div>
+					<div class="card-body ">
+						<div class="table-full-width table-responsive" style="height: 500px" #scroll [scrollTop] = "scroll.scrollHeight">
+							<table class="">
+								<tbody>
+								<tr *ngFor="let data of console">
+									<td class="text-left" style="display:inline-block">{{data}}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+						<div style="padding-top: 10px">
+							<input type="text" class="table-full-width table-responsive form-control" (keypress)="sendCommand($event)" #input="ngModel" [(ngModel)]="command" name="command" id="command">
+						</div>
+					</div>
+					<div class="card-footer ">
+						<hr>
+						<div class="stats">
+							<i class="fa fa-refresh spin"></i> Actualización en tiempo real.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
