@@ -13,10 +13,10 @@ import {UtilsService} from '../../services/utils';
 
 export class InfoSystemComponent implements OnInit {
 
-    private status;
-    private infoCPU;
-    private ramTotal = '0 Bytes';
-    private uptime = '0 horas, 0 minutos, 0 segundos';
+    public status;
+    public infoCPU;
+    public ramTotal = '0 Bytes';
+    public uptime = '0 horas, 0 minutos, 0 segundos';
 
 
     public canvas: any;

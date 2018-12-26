@@ -1,12 +1,12 @@
 /**
  * Created by Tomás on 20-12-2018.
  */
-//TODO: make socket io autenticate
 'use strict';
 
 const proc = require('child_process');
 const osm = require("os-monitor");
 const log4js = require('log4js');
+const utils = require('./server/utils/utils');
 const logger = log4js.getLogger('Minecraft Dashboard');
 
 let server = null;
@@ -17,6 +17,19 @@ function startScocket(app) {
     const io = require('socket.io')(app);
 
     logger.info('Start SockerIO');
+
+    // socket io auth
+    io.set('authorization', function (handshake, callback) {
+        utils.validateUser(handshake._query.Authorization).then((userData) => {
+            if (userData.status) {
+                callback(null, true);
+            } else {
+                callback(userData.desc, false);
+            }
+        }).catch((error) => {
+            callback(error.message, false);
+        });
+    });
 
     io.on('connection', function (socket) {
 

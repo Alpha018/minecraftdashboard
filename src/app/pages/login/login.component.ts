@@ -12,9 +12,9 @@ declare const $: any;
 })
 
 export class LoginComponent implements OnInit {
-    private userEmail: string;
-    private password: string;
-    private viewError = {
+    public userEmail: string;
+    public password: string;
+    public viewError = {
         error: false,
         msg: ''
     };
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
     focus1;
     focus2;
     test: Date = new Date();
-    private toggleButton;
-    private sidebarVisible: boolean;
-    private nativeElement: Node;
+    public toggleButton;
+    public sidebarVisible: boolean;
+    public nativeElement: Node;
 
     constructor(private element: ElementRef,
                 private _userService: UserService,
-                private _router: Router,) {
+                private _router: Router) {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
     }
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        if (!this.password ||this.password.length < 5) {
+        if (!this.password || this.password.length < 5) {
             this.viewError.error = true;
             this.viewError.msg = 'Se debe ingresar una password valida';
             return;

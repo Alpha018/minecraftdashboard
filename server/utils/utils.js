@@ -5,7 +5,7 @@
 
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const user = require('../model/User');
+const User = require('../model/User');
 const secretPassword = process.env.JWT_PASS || 'default';
 
 async function validateUser(tokenAuth) {
@@ -17,22 +17,22 @@ async function validateUser(tokenAuth) {
         if (payload.sub && payload.exp <= moment().unix()) {
             return {
                 status: false,
-                desc: 'El token expiró'
+                desc: 'Token expired'
             };
         }
     } catch (ex) {
         return {
             status: false,
-            desc: 'El token no es valido'
+            desc: 'Invalid Token'
         };
     }
 
-    const user = await user.findOne({_id: payload._id}).exec();
+    const user = await User.findOne({_id: payload._id}).exec();
 
     if (!user) {
         return {
             status: false,
-            desc: 'El usuario no existe en el sistema'
+            desc: 'User not exist'
         };
     } else {
         return {

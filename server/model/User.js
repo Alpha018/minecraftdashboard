@@ -18,7 +18,7 @@ const userSchema = new Schema({
         unique: true,
         validate: [function(email) {
             return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
-        },'El email utilizado no es valido.']
+        },'email is not valid']
     },
 
     username: {
