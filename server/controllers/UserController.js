@@ -76,6 +76,11 @@ function saveUser(req, res) {
     userSave.username = username;
     userSave.email = email;
 
+    userSave.profileImg.fullImage = `${process.env.BASE_URL}/api/user/image/default.jpg`;
+    userSave.profileImg.thumbnail = `${process.env.BASE_URL}/api/user/image/thumbnail/default.jpg`;
+    userSave.profileImg.nameFileOriginal = 'default.jpg';
+    userSave.profileImg.nameFileSys = 'default.jpg';
+
     userSave.save((err, user_saved) => {
         if (err) {
             res.status(500).send({
