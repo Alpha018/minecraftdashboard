@@ -32,6 +32,7 @@ mongoose.connect(`mongodb://${process.env.MONGO_USER}@${process.env.MONGO_HOST}:
                     if (count === 0) {
                         const user = 'admin', password = 'password', email = 'admin@admin.cl';
                         const userSave = new User();
+                        const bcrypt = require('bcrypt-nodejs');
                         userSave.password = bcrypt.hashSync(password);
                         userSave.username = user;
                         userSave.email = email;
