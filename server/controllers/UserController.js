@@ -42,7 +42,7 @@ function login(req, res) {
                 if (check) {
                     if (params.gettoken) {
 
-                        user_find["password"] = null;
+                        user_find["password"] = undefined;
                         const tok = jwt.createToken(user_find);
 
                         res.status(200).send({
@@ -52,7 +52,7 @@ function login(req, res) {
 
                     } else {
 
-                        user_find["password"] = null;
+                        user_find["password"] = undefined;
                         res.status(200).send(user_find);
 
                     }

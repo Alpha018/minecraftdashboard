@@ -7,6 +7,7 @@ import {UserComponent} from './User/user.component';
 import {UserRoutes} from './user.routing';
 import {ChangePassComponent} from './changePassword/changePass.component';
 import {UploadImageComponent} from './uploadImage/uploadImage.component';
+import {AddUserComponent} from './addUser/addUser.component';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {UploadImageComponent} from './uploadImage/uploadImage.component';
     declarations: [
         UserComponent,
         ChangePassComponent,
-        UploadImageComponent
+        UploadImageComponent,
+        AddUserComponent
     ]
 })
 

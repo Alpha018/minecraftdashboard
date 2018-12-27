@@ -69,7 +69,7 @@ export class UserService {
                 'application/json'
         });
         headers.append('Authorization', this.getToken());
-        return this._http.put(this.url + '/usuario/', params,
+        return this._http.put(this.url + '/user/', params,
             {headers: headers}).map(res => res.json());
     }
 
