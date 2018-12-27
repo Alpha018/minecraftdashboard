@@ -5,5 +5,5 @@
 
 export const environment = {
     production: false,
-    baseUrl: location.protocol + '//' + 'localhost:8000'
+    baseUrl: location.protocol + '//' + window.location.host
 };

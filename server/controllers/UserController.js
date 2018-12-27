@@ -204,13 +204,14 @@ function uploadImageProfile(req, res) {
 
     form.parse(req, function (err, fields, files) {
         if (!err) {
-            if (utils.getFileExtension(files.file.name) !== 'png' &&
-                utils.getFileExtension(files.file.name) !== 'PNG' &&
-                utils.getFileExtension(files.file.name) !== 'jpg' &&
-                utils.getFileExtension(files.file.name) !== 'JPG') {
+            if (utils.getFileExtension(files.file.name).toLowerCase() !== 'png' &&
+                utils.getFileExtension(files.file.name).toLowerCase() !== 'jpg' &&
+                utils.getFileExtension(files.file.name).toLowerCase() !== 'gif') {
 
                 try {
-                    fs.unlinkSync(files.file.path);
+                    if(files.file.path !== 'default.jpg') {
+                        fs.unlinkSync(files.file.path);
+                    }
                 } catch (err) {
                     logger.info('File don\'t exist');
                 }
@@ -230,7 +231,9 @@ function uploadImageProfile(req, res) {
                         });
 
                         try {
-                            fs.unlinkSync(files.file.path);
+                            if(files.file.path !== 'default.jpg') {
+                                fs.unlinkSync(files.file.path);
+                            }
                         } catch (err) {
                             logger.info('File don\'t exist');
                         }
@@ -243,7 +246,9 @@ function uploadImageProfile(req, res) {
                             });
 
                             try {
-                                fs.unlinkSync(files.file.path);
+                                if(files.file.path !== 'default.jpg') {
+                                    fs.unlinkSync(files.file.path);
+                                }
                             } catch (err) {
                                 logger.info('File don\'t exist');
                             }
@@ -251,7 +256,9 @@ function uploadImageProfile(req, res) {
                         } else {
 
                             try {
-                                fs.unlinkSync(`${IMAGE_DIRECTORY}/${user_find.profileImg.nameFileSys}`);
+                                if(user_find.profileImg.nameFileSys !== 'default.jpg') {
+                                    fs.unlinkSync(`${IMAGE_DIRECTORY}/${user_find.profileImg.nameFileSys}`);
+                                }
                             } catch (err) {
                                 logger.info('File don\'t exist');
                             }

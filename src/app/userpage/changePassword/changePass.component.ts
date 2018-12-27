@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import swal from 'sweetalert2';
-import {UserService} from "../../services/user.services";
-import {Router} from "@angular/router";
+import {UserService} from '../../services/user.services';
+import {Router} from '@angular/router';
 
 @Component({
     moduleId: module.id,

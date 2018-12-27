@@ -5,7 +5,8 @@ import {FormsModule} from '@angular/forms';
 
 import {UserComponent} from './User/user.component';
 import {UserRoutes} from './user.routing';
-import {ChangePassComponent} from "./changePassword/changePass.component";
+import {ChangePassComponent} from './changePassword/changePass.component';
+import {UploadImageComponent} from './uploadImage/uploadImage.component';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {ChangePassComponent} from "./changePassword/changePass.component";
     ],
     declarations: [
         UserComponent,
-        ChangePassComponent
+        ChangePassComponent,
+        UploadImageComponent
     ]
 })
 

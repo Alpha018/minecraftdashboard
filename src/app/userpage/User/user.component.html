@@ -2,28 +2,28 @@
 	<div class="row">
 		<div class="col-lg-10 col-md-10 text-center offset-1">
 			<div class="card card-user">
-				<div class="image">
+				<div class="image" style="height: 200px">
 					<img src="./assets/img/bg/minecraft_landscape.jpg" alt="...">
 				</div>
 				<div class="card-body">
 					<div class="author">
 						<a href="#">
-							<img class="avatar border-gray" src="{{identity?.profileImg.fullImage}}" alt="...">
+							<img class="avatar border-gray" src="{{identity?.profileImg.fullImage}}" alt="..." style="width: 200px; height: 200px">
 							<h5 class="title">{{identity?.username}}</h5>
 						</a>
 						<p class="description">
 							{{identity?.email}}
 						</p>
 					</div>
-					<p class="description text-center">
+					<h5 class="description text-center">
 						Bienvenido al panel de administración de MineCraft
-					</p>
+					</h5>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card-body" style="min-height: 130px">
 							<button class="btn" [routerLink]="['/profile/changepass']">Cambiar Contraseña</button>
-							<button class="btn btn-primary" [routerLink]="['/profile/changeimg']" style="margin-right: 3em; margin-left: 3em">Cambiar imagen de perfil</button>
+							<button class="btn btn-primary" [routerLink]="['/profile/uploadimage']" style="margin-right: 3em; margin-left: 3em">Cambiar imagen de perfil</button>
 							<button class="btn btn-info" [routerLink]="['/profile/adduser']">Agregar Usuario</button>
 						</div>
 					</div>
