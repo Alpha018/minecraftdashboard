@@ -96,7 +96,7 @@ function saveUser(req, res) {
 function changePassword(req, res) {
     const body = req.body;
 
-    User.findOne({_id: body._id}).select('+password').exec(function (err, user_finded) {
+    User.findOne({_id: req.user._id}).select('+password').exec(function (err, user_finded) {
         const check = bcrypt.compareSync(body.old, user_finded.password);
         if (check) {
             user_finded.password = bcrypt.hashSync(body.new);

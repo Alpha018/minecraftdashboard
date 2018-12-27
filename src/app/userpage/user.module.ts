@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 
 import {UserComponent} from './User/user.component';
 import {UserRoutes} from './user.routing';
+import {ChangePassComponent} from "./changePassword/changePass.component";
 
 @NgModule({
     imports: [
@@ -12,7 +13,10 @@ import {UserRoutes} from './user.routing';
         RouterModule.forChild(UserRoutes),
         FormsModule
     ],
-    declarations: [UserComponent]
+    declarations: [
+        UserComponent,
+        ChangePassComponent
+    ]
 })
 
 export class UserModule {}

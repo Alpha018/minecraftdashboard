@@ -73,9 +73,8 @@ export class UserService {
             {headers: headers}).map(res => res.json());
     }
 
-    changePassword(id: string, oldpass: string, newpass: string) {
+    changePassword(oldpass: string, newpass: string) {
         const send = {
-            _id: id,
             old: oldpass,
             new: newpass
         };

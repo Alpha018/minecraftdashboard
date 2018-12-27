@@ -1,0 +1,47 @@
+<div class="main-content">
+	<div class="row">
+		<div class="col-md-8 ml-auto mr-auto">
+			<div class="card ">
+				<div class="card-header text-center">
+					<h4 class="card-title">Cambio de Contraseña</h4>
+				</div>
+				<div class="card-body ">
+					<form class="form-horizontal" (submit)="submitForm(oldPass.value, newPass.value, repeat.value)">
+						<div class="row">
+							<label class="col-md-3 col-form-label">Contraseña Antigua</label>
+							<div class="col-md-9">
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Contraseña Antigua" #oldPass>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 2em">
+							<label class="col-md-3 col-form-label">Contraseña Nueva</label>
+							<div class="col-md-9">
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Contraseña Nueva" #newPass>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 2em">
+							<label class="col-md-3 col-form-label">Repita Contraseña Nueva</label>
+							<div class="col-md-9">
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Repita Contraseña Nueva" #repeat>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer text-center center-block" style="padding-top: 2em">
+							<div class="row">
+								<div class="col-md-12 text-center center-block">
+									<button type="submit" class="btn btn-info btn-round">Cambiar Contraseña</button>
+									<button type="button" class="btn btn-warning btn-round" style="margin-left: 3em; width: 200px" (click)="back()">Volver</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
