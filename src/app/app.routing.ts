@@ -16,6 +16,9 @@ export const AppRoutes: Routes = [{
     }, {
         path: 'files',
         loadChildren: './forms/forms.module#Forms'
+    }, {
+        path: 'profile',
+        loadChildren: './userpage/user.module#UserModule'
     }]
 }, {
     path: '',
@@ -24,5 +27,4 @@ export const AppRoutes: Routes = [{
         path: 'pages',
         loadChildren: './pages/pages.module#PagesModule'
     }]
-}
-];
+}];

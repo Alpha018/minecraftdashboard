@@ -1,0 +1,59 @@
+<div class="main-content">
+	<div class="row">
+		<div class="col-lg-10 col-md-10 text-center offset-1">
+			<div class="card card-user">
+				<div class="image">
+					<img src="./assets/img/bg/minecraft_landscape.jpg" alt="...">
+				</div>
+				<div class="card-body">
+					<div class="author">
+						<a href="#">
+							<img class="avatar border-gray" src="{{identity?.profileImg.fullImage}}" alt="...">
+							<h5 class="title">{{identity?.username}}</h5>
+						</a>
+						<p class="description">
+							{{identity?.email}}
+						</p>
+					</div>
+					<p class="description text-center">
+						Bienvenido al panel de administración de MineCraft
+					</p>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card-body" style="min-height: 130px">
+							<button class="btn" [routerLink]="['/profile/changepass']">Cambiar Contraseña</button>
+							<button class="btn btn-primary" [routerLink]="['/profile/changeimg']" style="margin-right: 3em; margin-left: 3em">Cambiar imagen de perfil</button>
+							<button class="btn btn-info" [routerLink]="['/profile/adduser']">Agregar Usuario</button>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<hr>
+					<div class="button-container">
+						<div class="row">
+							<div class="col-lg-3 col-md-6 col-6 ml-auto">
+								<h5>{{plugins?.length}}
+									<br>
+									<small>Plugins</small>
+								</h5>
+							</div>
+							<div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+								<h5>{{ramTotal}}
+									<br>
+									<small>Ram Total</small>
+								</h5>
+							</div>
+							<div class="col-lg-3 mr-auto">
+								<h5>{{infoCPU}}
+									<br>
+									<small>CPU</small>
+								</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
