@@ -25,7 +25,7 @@ mongoose.connect(`mongodb://${process.env.MONGO_USER}@${process.env.MONGO_HOST}:
             logger.info(`Server start in port: ${port}`);
 
             const User = require('./server/model/User');
-            User.count({}, function (err, count) {
+            User.countDocuments({}, function (err, count) {
                 if (err) {
                     logger.error(`Error when connecting to the database`);
                 } else {

@@ -12,7 +12,7 @@ const fs = require('fs');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Minecraft Dashboard');
 
-const IMAGE_DIRECTORY = __dirname + "/../../../img";
+const IMAGE_DIRECTORY = __dirname + "/../../img";
 const mime = require('mime-types');
 const imageThumbnail = require('image-thumbnail');
 
