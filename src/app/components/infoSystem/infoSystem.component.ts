@@ -262,7 +262,7 @@ export class InfoSystemComponent implements OnInit {
             if (dataset.data.length > 7) {
                 dataset.data.shift();
             }
-            dataset.data.push(data.loadavg[2]);
+            dataset.data.push(data.loadavg[2] * 100);
         });
         this.myChartCPU.update(0);
     }
