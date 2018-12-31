@@ -7,11 +7,14 @@ const proc = require('child_process');
 const osm = require("os-monitor");
 const log4js = require('log4js');
 const utils = require('./server/utils/utils');
+const PropertiesReader = require('properties-reader');
+const fs = require('fs');
 const logger = log4js.getLogger('Minecraft Dashboard');
 
 let server = null;
 let mc_server = null;
 let globalConsole = [];
+let clients = [];
 
 function startScocket(app) {
     const io = require('socket.io')(app);
@@ -33,6 +36,8 @@ function startScocket(app) {
 
     io.on('connection', function (socket) {
 
+        clients[socket.id] = socket;
+
         osm.start({
             delay: 3000,
             stream: false,
@@ -46,6 +51,7 @@ function startScocket(app) {
 
         // --------------------------DISCONNECT----------------------------------
         socket.on('disconnect', function (data) {
+            delete clients[socket.id];
             osm.stop();
             socket.disconnect();
         });
@@ -88,7 +94,7 @@ function startScocket(app) {
                 logger.info('Starting MineCraft Server');
 
                 if (mc_server) {
-                    socket.emit('fail', 'start_server');
+                    socket.emit('fail', 'server_started');
                     logger.info('Server already started');
                     return;
                 }
@@ -103,8 +109,85 @@ function startScocket(app) {
 
             }, 2000);
         });
+        // --------------------------ACCEPT EULA--------------------------------
 
+        socket.on('get_eula', function () {
+            try {
+                const properties = PropertiesReader(`${process.env.MINECRAFT_DIRECTORY}/eula.txt`);
+                socket.emit('server_eula', properties);
+            } catch (e) {
+                socket.emit('fail', 'error_reading_server_eula');
+            }
+        });
 
+        socket.on('accept_eula', function () {
+            if (server) {
+                socket.emit('fail', 'server_is_started');
+                return;
+            }
+
+            try {
+                const properties = PropertiesReader(`${process.env.MINECRAFT_DIRECTORY}/eula.txt`);
+                if (properties._propertiesExpanded.eula === 'true') {
+                    socket.emit('fail', 'eula_true');
+                    return;
+                }
+                properties.set('eula', 'true');
+                let saved = [];
+                properties.each((key, val) => saved.push(`${key} = ${val}`));
+
+                fs.writeFile(
+                    `${process.env.MINECRAFT_DIRECTORY}/eula.txt`, saved.join('\n'), (err) => {
+                        if (err) socket.emit('fail', 'fail_to_edit_eula');
+                        socket.emit('change_server_eula', true);
+                    });
+            } catch (e) {
+                socket.emit('fail', 'fail_to_find_eula');
+            }
+        });
+
+        // --------------------------EDIT SERVER PROPERTIES---------------------
+        socket.on('get_server_properties', function () {
+            if (server) {
+                socket.emit('fail', 'server_is_started');
+                return;
+            }
+            try{
+                const properties = PropertiesReader(`${process.env.MINECRAFT_DIRECTORY}/server.properties`);
+                socket.emit('server_properties', properties);
+            } catch (e) {
+                socket.emit('fail', 'error_reading_server_prop');
+            }
+        });
+
+        socket.on('change_server_properties', function (object) {
+            if (server) {
+                socket.emit('fail', 'server_is_started');
+                return;
+            }
+            const prop = object.prop;
+            const value = object.value;
+
+            if (prop && value) {
+                try{
+                    const properties = PropertiesReader(`${process.env.MINECRAFT_DIRECTORY}/server.properties`);
+                    properties.set(prop, value);
+
+                    let saved = [];
+                    properties.each((key, val) => saved.push(`${key} = ${val}`));
+
+                    fs.writeFile(
+                        `${process.env.MINECRAFT_DIRECTORY}/server.properties`, saved.join('\n'), (err) => {
+                            if (err) socket.emit('fail', 'error_writing_server_prop');
+                            socket.emit('change_server_properties_response', true);
+                        });
+                } catch (e) {
+                    socket.emit('fail', 'error_writing_server_prop');
+                }
+            } else {
+                socket.emit('fail', 'error_writing_server_prop');
+            }
+        });
         // --------------------------CLOSE SERVER------------------------------
         socket.on('close_server', function () {
             try {

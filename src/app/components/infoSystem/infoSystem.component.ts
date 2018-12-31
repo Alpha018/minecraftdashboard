@@ -4,6 +4,7 @@ import {ServerService} from '../../services/serverService';
 import {UserService} from '../../services/user.services';
 import Chart from 'chart.js';
 import {UtilsService} from '../../services/utils';
+import swal from 'sweetalert2';
 
 @Component({
     moduleId: module.id,
@@ -17,7 +18,7 @@ export class InfoSystemComponent implements OnInit {
     public infoCPU;
     public ramTotal = '0 Bytes';
     public uptime = '0 horas, 0 minutos, 0 segundos';
-
+    public eula = false;
 
     public canvas: any;
     public ctx;
@@ -51,12 +52,48 @@ export class InfoSystemComponent implements OnInit {
             this.infoCPU = data;
         });
 
+        this.socket.emit('get_eula', {});
+        this.socket.on('server_eula', (data: any) => {
+            this.eula = (data._propertiesExpanded.eula === 'true');
+            if (!this.eula) {
+                this.showEulaMessage();
+            }
+        });
+
         this.socket.on('system_usage', (data: any) => {
             this.ramTotal = UtilsService.formatSizeUnits(data.totalmem, 0);
             this.uptime = UtilsService.secondsToHms(data.uptime);
 
             this.changeData(data);
         });
+
+        this.socket.on('change_server_eula', (data: any) => {
+            this.eula = data;
+            swal({
+                title: 'Felicidades',
+                text: `El archivo EULA fue editado correctamente`,
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-warning',
+                type: 'success'
+            }).catch(swal.noop)
+        });
+    }
+
+    showEulaMessage() {
+        swal({
+            title: 'El EULA no fue acceptado',
+            text: `¿Acceptar EULA?`,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Si, hazlo',
+            buttonsStyling: false
+        }).then((result) => {
+            if (result.value) {
+                this.socket.emit('accept_eula', {});
+            }
+        })
     }
 
     clickInit() {

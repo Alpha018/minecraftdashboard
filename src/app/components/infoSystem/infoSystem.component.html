@@ -115,8 +115,8 @@
 	</div>
 
 
-	<div class="row offset-lg-3">
-		<div class="col-lg-4 col-md-6 col-sm-6">
+	<div class="row">
+		<div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
 			<div class="card card-stats">
 				<div class="card-body ">
 					<div class="row">
@@ -157,6 +157,33 @@
 								<p class="card-category">Tiempo de actividad</p>
 								<p class="card-title" style="font-size: medium">{{uptime}}
 								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer ">
+					<hr>
+					<div class="stats">
+						<i class="fa fa-refresh"></i> Auto Refresh
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-5 col-md-4">
+							<div class="icon-big text-center icon-warning">
+								<i class="nc-icon nc-paper text-info"></i>
+							</div>
+						</div>
+						<div class="col-7 col-md-8">
+							<div class="numbers">
+								<p class="card-category">EULA</p>
+								<p class="card-title" style="font-size: medium; color: greenyellow" *ngIf="eula">Aceptado</p>
+								<p class="card-title" style="font-size: medium; color: red" *ngIf="!eula">No aceptado</p>
 							</div>
 						</div>
 					</div>

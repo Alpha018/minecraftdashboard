@@ -36,7 +36,8 @@ export const ROUTES: RouteInfo[] = [{
     icontype: 'nc-icon nc-ruler-pencil',
     children: [
         {path: 'getplugins', title: 'Lista de Plugins', ab: 'LP'},
-        {path: 'uploadplugins', title: 'Subir Plugins', ab: 'SP'}
+        {path: 'uploadplugins', title: 'Subir Plugins', ab: 'SP'},
+        {path: 'serverproperties', title: 'Propiedades del Servidor', ab: 'PS'}
     ]
 }];
 

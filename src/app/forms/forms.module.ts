@@ -12,6 +12,7 @@ import {FileDropModule} from 'ngx-file-drop';
 import {HttpClientModule} from '@angular/common/http';
 import {UploadPluginsComponent} from './uploadPlugins/uploadPlugins.component';
 import {GetPluginsComponent} from './getPlugins/getPlugins.component';
+import {ServerPropertiesComponent} from "./serverProperties/serverProperties.component";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {GetPluginsComponent} from './getPlugins/getPlugins.component';
     ],
     declarations: [
         UploadPluginsComponent,
-        GetPluginsComponent
+        GetPluginsComponent,
+        ServerPropertiesComponent
     ]
 })
 

@@ -1,0 +1,29 @@
+<div class="main-content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title"> Simple Table</h4>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead class="text-primary">
+							<th class="text-center">#</th>
+							<th>Propiedad</th>
+							<th>Valor</th>
+							</thead>
+							<tbody>
+							<tr *ngFor="let data of objectKeys(properties); let i=index">
+								<td class="text-center">{{i + 1}}</td>
+								<td>{{data}}</td>
+								<td style="color: red"><input type="text" class="table-full-width table-responsive form-control" value="{{properties[data]}}" (change)="changeProperties(data, valueProp.value)" #valueProp></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
