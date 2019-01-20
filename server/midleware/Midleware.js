@@ -3,10 +3,9 @@
  */
 'use strict';
 
-const jwt = require('jwt-simple');
+const jwt = require('../services/jwt');
 const moment = require('moment');
 const User = require('../model/User');
-const secretPassword = process.env.JWT_PASS || 'default';
 
 function ensureAuth(req, res, next) {
     if (!req.headers.authorization) {
@@ -17,7 +16,7 @@ function ensureAuth(req, res, next) {
     let payload;
 
     try {
-        payload = jwt.decode(token, secretPassword);
+        payload = jwt.verify(token);
 
         if (payload.sub && payload.exp <= moment().unix()) {
             return res.status(401).send({
@@ -30,14 +29,14 @@ function ensureAuth(req, res, next) {
         });
     }
 
-    User.findOne({username: payload.username}, (err, find_user) => {
+    User.findOne({_id: payload._id}, (err, find_user) => {
         if (err) {
             res.status(500).send({message: 'Error del servidor'});
         } else {
             if (!find_user) {
                 res.status(404).send({message: 'El token de acceso no es valido.'})
             } else {
-                req.user = payload;
+                req.user = payload.payload;
                 next();
             }
         }

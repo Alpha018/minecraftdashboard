@@ -43,7 +43,7 @@ function login(req, res) {
                     if (params.gettoken) {
 
                         user_find["password"] = undefined;
-                        const tok = jwt.createToken(user_find);
+                        const tok = jwt.encode(user_find);
 
                         res.status(200).send({
                             token: tok.token,
@@ -186,7 +186,7 @@ function uploadImageProfile(req, res) {
 
     });
 
-    form.on('error', function (err) {
+    form.on('error', function () {
         res.status(500).send({
             desc: 'Error al subir el archivo'
         });
@@ -304,7 +304,7 @@ function uploadPlugins(req, res) {
         });
     });
 
-    form.on('error', function (err) {
+    form.on('error', function () {
         res.status(500).send({
             desc: 'Ocurrió un error en la subida del archivo'
         });
@@ -312,7 +312,7 @@ function uploadPlugins(req, res) {
         req.resume();
     });
 
-    form.on('aborted', function (err) {
+    form.on('aborted', function () {
         res.status(500).send({
             desc: 'Subida de plugin cancelado por el usuario'
         });

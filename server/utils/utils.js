@@ -3,16 +3,15 @@
  */
 'use strict';
 
-const jwt = require('jwt-simple');
+const jwt = require('../services/jwt');
 const moment = require('moment');
 const User = require('../model/User');
-const secretPassword = process.env.JWT_PASS || 'default';
 
 async function validateUser(tokenAuth) {
     let payload;
 
     try {
-        payload = jwt.decode(tokenAuth, secretPassword);
+        payload = jwt.verify(tokenAuth);
 
         if (payload.sub && payload.exp <= moment().unix()) {
             return {

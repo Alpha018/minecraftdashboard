@@ -7,7 +7,10 @@ MONGO_PORT=27017
 MONGO_DATABASE=minecraft
 
 
-JWT_PASS=(JWT Password to cipher data, required)
+JWT_PUBLIC_KEY=(Route to public RSA Key)
+JWT_PRIVATE_KEY=(Route to private RSA Key)
+
+
 DIRECTORY_PLUGINS=(Route to minecraft plugins e.g. C:/user/.../minecraft/plugins)
 MINECRAFT_SERVER=(Name of file to launch the minecraft server e.g. "spigot.jar")
 MINECRAFT_DIRECTORY=(Route to minecraft server e.g. C:/user/.../minecraft)

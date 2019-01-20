@@ -1,3 +1,10 @@
 .idea/
 node_modules/
 .env
+dist/
+src/.DS_Store
+src/app/forms/.DS_Store
+typings.json
+typings/
+package-lock.json
+img/
